@@ -1,22 +1,15 @@
-ollama:
-  embedding_model: "nomic-embed-text"
-  base_url: http://ollama:11434 # with ollama docker container
-  #base_url: http://host.docker.internal:11434 # with ollama local install instead of docker container on Windows
-  #base_url: http://localhost:11434 # with a complete manual install on linux
+model_path:
+  small: "./models/mistral-7b-instruct-v0.1.Q3_K_M.gguf"
+  large:  "./models/mistral-7b-instruct-v0.1.Q5_K_M.gguf"
 
-chat_config:
-  chat_memory_length: 2
-  number_of_retrieved_documents: 3
+model_type: "mistral"
 
-pdf_text_splitter:
-  chunk_size: 1024 # number of characters 1024 roughly equels 256 tokens
-  overlap: 50
-  separators: ["\n", "\n\n"]
+embeddings_path: "BAAI/bge-large-en-v1.5"
 
-whisper_model: "openai/whisper-small" # choose from here https://huggingface.co/collections/openai/whisper-release-6501bba2cf999715fd953013
+model_config: 
+  'max_new_tokens': 512
+  'temperature' : 0
+  'context_length': 4096
+  'gpu_layers' : 0
 
-chromadb:
-  chromadb_path: "chroma_db"
-  collection_name: "pdfs"
-
-chat_sessions_database_path: "./chat_sessions/chat_sessions.db"
+chat_history_path: "./chat_sessions/"

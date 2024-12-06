@@ -1,125 +1,8 @@
 # Local Multimodal AI Chat
-## Getting Started
 
-You can follow my [YouTube-Video](https://youtu.be/eNwvAdem4vo) on setting up the repository on Linux or Windows.
-
-To get started with Local Multimodal AI Chat, clone the repository and follow these simple steps:
-
-### Easiest and Preferred Method: Docker Compose
-1. **Set model save path**: Line 21 in the docker-compose.yml file
-
-2. **Enter command in terminal**: ```docker compose up```
-   
-   Note: If you don't have a GPU, you can remove the deploy section from the docker compose file.
-
-3. **Optional**: 
-   - Check the config.yaml file and change accordingly to your needs.
-   - Place your user_image.png and/or bot_image.png inside the chat_icons folder and remove the old ones. 
-
-4. **Open the app**: Open [0.0.0.0:8501](http://0.0.0.0:8501) in the Browser
-
-5. **Pull Models**: Go to https://ollama.com/library and choose the models you want to use. Enter ```/pull MODEL_NAME``` in the chat bar. 
-You need one embedding model e.g. [nomic-embed-text](https://ollama.com/library/nomic-embed-text) to embed pdf files (change embedding model in config if you choose another). You also need a model which undertands 
-images e.g. [llava](https://ollama.com/library/llava) 
-
-6. **Optional**: 
-   - Check the config.yaml file and change accordingly to your needs.
-   - Place your user_image.png and/or bot_image.png inside the chat_icons folder and remove the old ones. 
-
-### Recommendation for Windows
-Using ollama docker container results in very slow loading times for the models due to system calls being translated between two kernels. Installing Ollama locally works best here.
-
-
-1. **Install [Ollama](https://ollama.com/download) desktop**
-
-2. **Change Docker Compose file**: remove docker-compose.yml and rename docker-compose_without_ollama.yml to docker-compose.yml
-
-3. **Change Ollama Base URL in config.yaml**: Use line 4 in the config.yaml file and remove line 3
-
-3. **Enter command in terminal**: ```docker compose up```
-
-4. **Open the app**: Open [0.0.0.0:8501](http://0.0.0.0:8501) in the Browser
-
-5. **Pull Models**: Go to https://ollama.com/library and choose the models you want to use. Enter ```/pull MODEL_NAME``` in the chat bar. 
-You need one embedding model e.g. [nomic-embed-text](https://ollama.com/library/nomic-embed-text) to embed pdf files (change embedding model in config if you choose another). You also need a model which undertands 
-images e.g. [llava](https://ollama.com/library/llava) 
-
-6. **Optional**: 
-   - Check the config.yaml file and change accordingly to your needs.
-   - Place your user_image.png and/or bot_image.png inside the chat_icons folder and remove the old ones. 
-
-### Complete Manual Install
-
-1. **Install [Ollama](https://github.com/ollama/ollama)**
-
-2. **Create a Virtual Environment**: I am using Python 3.10.12
-
-3. **Install Requirements**:
-   - ```pip install --upgrade pip```
-   - ```pip install -r requirements.txt```
-   - ```pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu```   
-
-4. **Enter commands in terminal**: 
-   1. ```python3 database_operations.py``` This will initialize the sqlite database for the chat sessions.
-   2. ```streamlit run app.py```
-
-5. **Pull Models**: Go to https://ollama.com/library and choose the models you want to use. Enter ```/pull MODEL_NAME``` in the chat bar. 
-You need one embedding model e.g. [nomic-embed-text](https://ollama.com/library/nomic-embed-text) to embed pdf files and one model which undertands 
-images e.g. [llava](https://ollama.com/library/llava) 
-
-6. **Optional**: 
-   - Check the config.yaml file and change accordingly to your needs.
-   - Place your user_image.png and/or bot_image.png inside the chat_icons folder and remove the old ones. 
-
-
-## Overview
-
-Local Multimodal AI Chat is a multimodal chat application that integrates various AI models to manage audio, images, and PDFs seamlessly within a single interface. This application is ideal for those passionate about AI and software development, offering a comprehensive solution that employs Whisper AI for audio processing, LLaVA for image management, and Chroma DB for handling PDFs.
-
-The application has been enhanced with the Ollama server and the OpenAI API, boosting its functionality and performance. You can find a detailed tutorial on the development of this repository on my [youtube channel](https://youtu.be/CUjO8b6_ZuM). While significant advancements have been made, the project is still open to further development and refinement.
-
-I welcome contributions of all forms. Whether you’re introducing new features, optimizing the code, or correcting bugs, your participation is valued. This project thrives on community collaboration and aims to serve as a robust resource for those interested in the practical application of multimodal AI technologies.
-
-
-## Features
-
-- **Local Model Processing with Ollama**: This app utilizes the Ollama server for running local instances of models, providing a powerful and customizable AI experience without the need for external cloud dependencies. This setup is ideal for maintaining data privacy and improving response times.
-
-- **Integration with OpenAI API**: For broader AI capabilities, this application also connects to the OpenAI API, enabling access to a wide range of cutting-edge AI models hosted externally. This feature ensures the app remains versatile and capable of handling a variety of tasks and queries efficiently.
-
-- **Audio Chatting with Whisper AI**: Leveraging Whisper AI's robust transcription capabilities, this app offers a sophisticated audio messaging experience. The integration of Whisper AI allows for accurate interpretation and response to voice inputs, enhancing the natural flow of conversations.
-[Whisper models](https://huggingface.co/collections/openai/whisper-release-6501bba2cf999715fd953013)
-
-- **PDF Chatting with Chroma DB**: The app is tailored for both professional and academic uses, integrating Chroma DB as a vector database for efficient PDF interactions. This feature allows users to engage with their own PDF files locally on their device. This makes it a valuable tool for personal use, where one can extract insights, summaries, and engage in a unique form of dialogue with the text in their PDF files. [Chroma website](https://docs.trychroma.com/)
+This branch represents a state of the code similar to what was shown in the YouTube video. It was created in case there are significant changes and you prefer to work with the codebase as it appeared in the video.
 
 ## Changelog
-
-### 16.09.2024:
-- **Big Update**: Model Serving based on Ollama API now. Added Openai API.
-
-<details>
-  <summary>Click to see more!</summary>
-
-### 24.08.2024:
-- **Docker Compose Added**
-
-### 17.02.2024:
-- **Input Widget Update**: Replaced st.text_input with st.chat_input to enhance interaction by leveraging a more chat-oriented UI, facilitating user engagement.
-- **Sidebar Adjustment**: Relocated the audio recording button to the sidebar for a cleaner and more organized user interface, improving accessibility and user experience.
-
-### 10.02.2024:
-- **License Added**: Implemented the GNU General Public License v3.0 to ensure the project is freely available for use, modification, and distribution under the terms of this license. A comprehensive copyright and license notice has been included in the main file (app.py) to clearly communicate the terms under which the project is offered. This addition aims to protect both the contributors' and users' rights, fostering an open and collaborative development environment. For full license details, refer to the LICENSE file in the project repository.
-- **Caching for Chat Model**: Introduced caching for the chat model to prevent it from being reloaded with every script execution. This optimization significantly improves performance by reducing load times 
-- **Config File Expansion**: Expanded the configuration file to accommodate new settings and features, providing greater flexibility and customization options for the chat application.
-
-
-### 09.02.2024:
-
-- **SQLite Database for Chat History**: Implemented a SQLite database to store the chat history.
-- **Displaying Images and Audio Files in Chat**: Chat history now supports displaying images and audio files.
-- **Added Button to delete Chat History**
-- **Updated langchain**: Runs now with the current langchain version 0.1.6
-
 ### 16.01.2024:
 - **Windows User DateTime Format Issue:** Windows users seemed to have problems with the datetime format of the saved JSON chat histories. I changed the format in the `ultis.py` file to `"%Y_%m_%d_%H_%M_%S"`, which should solve the issue. Feel free to change it to your liking.
 - **UI Adjustment for Chat Scrolling:** Scrolling down in the chat annoyed me, so the text input box and the latest message are at the top now.
@@ -128,23 +11,57 @@ I welcome contributions of all forms. Whether you’re introducing new features,
 - **Issue with Message Sending:** After writing in the text field and pressing the send button, the LLM would not generate a response. 
 - **Cause of the Issue:** This happened because the `clear_input_field` callback from the button changes the text field value to an empty string after saving the user question. However, changing the text field value triggers the callback from the text field widget, setting the `user_question` to an empty string again. As a result, the LLM is not called.
 - **Implemented Workaround:** As a workaround, I added a check before changing the `user_question` value.
-</details>
+
+
+## Overview
+
+Local Multimodal AI Chat is a hands-on project aimed at learning how to build a multimodal chat application. This project is all about integrating different AI models to handle audio, images, and PDFs in a single chat interface. It's a great way for anyone interested in AI and software development to get practical experience with these technologies.
+
+The main purpose here is to learn by doing. You'll see how different pieces like Whisper AI for audio, LLaVA for image processing, and Chroma DB for PDFs come together in a chat application. A full tutorial on how I created this repository can be found on my [youtube channel](https://youtu.be/CUjO8b6_ZuM).
+But, this is still a work in progress. There's plenty of room for improvement, and that's where you come in.
+
+I'm really open to pull requests. Whether you have ideas for new features, ways to make the code better, or just want to fix a bug, your contributions are welcome. This project is as much about learning from each other as it is about building something cool.
+
+So, if you're interested in AI chat applications and want to dive into how they're built, join in. Your code and ideas can help make this project better for everyone who wants to learn more about building with AI.
+
+## Features
+
+- **Quantized Model Integration**: This app uses what are called "quantized models." These are special because they are designed to work well on regular consumer hardware, like the kind most of us have at home or in our offices. Normally, the original versions of these models are really big and need more powerful computers to run them. But quantized models are optimized to be smaller and more efficient, without losing much performance. This means you can use this app and its features without needing a super powerful computer. [Quantized Models from TheBloke](https://huggingface.co/TheBloke)
+
+- **Audio Chatting with Whisper AI**: Leveraging Whisper AI's robust transcription capabilities, this app offers a sophisticated audio messaging experience. The integration of Whisper AI allows for accurate interpretation and response to voice inputs, enhancing the natural flow of conversations.
+[Whisper models](https://huggingface.co/collections/openai/whisper-release-6501bba2cf999715fd953013)
+
+- **Image Chatting with LLaVA**: The app integrates LLaVA for image processing, which is essentially a fine-tuned LLaMA model equipped to understand image embeddings. These embeddings are generated using a CLIP model, making LLaVA function like a pipeline that brings together advanced text and image understanding. With LLaVA, the chat experience becomes more interactive and engaging, especially when it comes to handling and conversing about visual content. [llama-cpp-python repo for Llava loading](https://github.com/abetlen/llama-cpp-python)
+
+- **PDF Chatting with Chroma DB**: The app is tailored for both professional and academic uses, integrating Chroma DB as a vector database for efficient PDF interactions. This feature allows users to engage with their own PDF files locally on their device. Whether it's for reviewing business reports, academic papers, or any other PDF document, the app offers a seamless experience. It provides an effective way for users to interact with their PDFs, leveraging the power of AI to understand and respond to content within these documents. This makes it a valuable tool for personal use, where one can extract insights, summaries, and engage in a unique form of dialogue with the text in their PDF files. [Chroma website](https://docs.trychroma.com/)
+
+
+## Getting Started
+
+To get started with Local Multimodal AI Chat, clone the repository and follow these simple steps:
+
+1. **Upgrade pip**: pip install --upgrade pip
+
+2. **Install Requirements**: pip install -r requirements.txt
+   
+   **Note:** in requirements_with_versions.txt I saved the versions of the requirements while creating this project, and in pip_freeze.txt is a complete freeze of the packages in the environment I used. So if you encounter errors due to newer versions, you might want to consider using one of those requirements files, or at least the versions for the packages which make problems.
+   
+   **Windows Users:** The installation might differ a bit for you, if you encounter errors you can't solve, please open an Issue here on github.
+
+3. **Setting Up Local Models**: Download the models you want to implement. [Here](https://huggingface.co/mys/ggml_llava-v1.5-7b/tree/main) is the llava model I used for image chat (ggml-model-q5_k.gguf and mmproj-model-f16.gguf). 
+And the [quantized mistral model](https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.1-GGUF) form TheBloke.
+
+4. **Customize config file**: Check the config file and change accordingly to the models you downloaded.
+
+5. **Enter command in terminal**: streamlit run app.py
 
 
 ## Possible Improvements
-- ~~Add Model Caching.~~
-- ~~Add Images and Audio to Chat History Saving and Loading.~~
-- ~~Use a Database to Save the Chat History.~~
-- Integrate ~~Ollama, OpenAI,~~ Gemini, or Other Model Providers.
+- Add Model Caching.
+- Add Images and Audio to Chat History Saving and Loading.
+- Use a Database to Save the Chat History.
+- Integrate Ollama, OpenAI, Gemini, or Other Model Providers.
 - Add Image Generator Model.
 - Authentication Mechanism.
 - Change Theme.
-- ~~Separate Frontend and Backend Code for Better Deployment.~~
-
-## Contact Information
-
-If you're interested in working with me, feel free to contact me via email.
-Before contacting me because of errors you're encountering, make sure to check the github issues first: https://github.com/Leon-Sander/Local-Multimodal-AI-Chat/issues?q=
-
-- Email: leonsander.consulting@gmail.com
-- Twitter: [@leonsanderai](https://twitter.com/leonsanderai)
+- Separate Frontend and Backend Code for Better Deployment.
